@@ -3,6 +3,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 class Tictactoe extends JFrame implements ActionListener {
     private JButton[][] buttons;
@@ -19,22 +20,21 @@ class Tictactoe extends JFrame implements ActionListener {
         setSize(300, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
-        
-    //backgrounds
+
         getContentPane().setBackground(new Color(2, 49, 2));
-        
-    //buttons    
-      for (int row = 0; row < 3; row++) {
+
+        for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 JButton button = new JButton("");
                 button.setFont(new Font("Arial", Font.PLAIN, 40));
                 button.setFocusPainted(false);
                 button.setBackground(Color.WHITE);
-                button.setBorder(new LineBorder(new Color(0, 128, 0), 2)); // Dark green border
+                button.setBorder(new LineBorder(new Color(36, 61, 20), 2)); // Dark green border
                 button.addActionListener(this);
 
                 buttons[row][col] = button;
                 add(button);
+            }
         }
 
         setVisible(true);
