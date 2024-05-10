@@ -19,16 +19,22 @@ class Tictactoe extends JFrame implements ActionListener {
         setSize(300, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
-
-
-        for (int row = 0; row < 3; row++) {
+        
+    //backgrounds
+        getContentPane().setBackground(new Color(2, 49, 2));
+        
+    //buttons    
+      for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                buttons[row][col] = new JButton("");
-                buttons[row][col].setFont(new Font("Arial", Font.PLAIN, 40));
-                buttons[row][col].setFocusPainted(false);
-                buttons[row][col].addActionListener(this);
-                add(buttons[row][col]);
-            }
+                JButton button = new JButton("");
+                button.setFont(new Font("Arial", Font.PLAIN, 40));
+                button.setFocusPainted(false);
+                button.setBackground(Color.WHITE);
+                button.setBorder(new LineBorder(new Color(0, 128, 0), 2)); // Dark green border
+                button.addActionListener(this);
+
+                buttons[row][col] = button;
+                add(button);
         }
 
         setVisible(true);
