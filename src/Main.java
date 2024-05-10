@@ -1,4 +1,5 @@
-//Jaquilmac, Fruee Jane
+/*TicTac Toe is fun!
+Jaquilmac, Fruee Jane*/
 
 import java.awt.*;
 import java.awt.event.*;
