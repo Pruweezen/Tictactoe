@@ -10,6 +10,8 @@ class Tictactoe extends JFrame implements ActionListener {
     private JButton[][] buttons;
     private boolean playerXTurn;
     private int moveCount;
+    private JLabel statusLabel;
+    private JButton newGameButton;
 
     public Tictactoe() {
         buttons = new JButton[3][3];
@@ -18,12 +20,20 @@ class Tictactoe extends JFrame implements ActionListener {
 
 
         setTitle("Tic-Tac-Toe");
-        setSize(300, 300);
+        setSize(400, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
 
-        getContentPane().setBackground(new Color(2, 49, 2));
+        statusLabel = new JLabel("Player X's Turn");
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(statusLabel, BorderLayout.NORTH);
 
+        JPanel gridPanel = new JPanel(new GridLayout(3, 3));
+        gridPanel.setBorder(new LineBorder(Color.BLACK, 2));
+        add(gridPanel, BorderLayout.CENTER);
+        
+    
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 JButton button = new JButton("");
@@ -34,10 +44,14 @@ class Tictactoe extends JFrame implements ActionListener {
                 button.addActionListener(this);
 
                 buttons[row][col] = button;
-                add(button);
+               gridPanel.add(button);
             }
         }
-
+            newGameButton = new JButton("New Game");
+            newGameButton.setFont(new Font("Arial", Font.BOLD, 14));
+            newGameButton.addActionListener(e -> resetGame());
+            add(newGameButton, BorderLayout.SOUTH);
+        
         setVisible(true);
     }
 
@@ -52,8 +66,10 @@ class Tictactoe extends JFrame implements ActionListener {
 
         if (playerXTurn) {
             clickedButton.setText("X");
+            statusLabel.setText("Player O's Turn");
         } else {
             clickedButton.setText("O");
+            statusLabel.setText("Player X's Turn");
         }
 
         moveCount++;
@@ -105,13 +121,18 @@ class Tictactoe extends JFrame implements ActionListener {
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                buttons[row][col].setText("");
+                if (buttons[row][col] != null) {
+                    buttons[row][col].setText("");
+                }
             }
         }
 
+        
         playerXTurn = true;
-        moveCount = 0;
+        moveCount = 0; 
+        statusLabel.setText("Player X's Turn"); // Reset the status label
     }
+
 
     public static void main(String[] args) {
         new Tictactoe();
